@@ -1,0 +1,112 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", "group:monorepos"],
+  "timezone": "UTC",
+  "prHourlyLimit": 5,
+  "prConcurrentLimit": 5,
+  "baseBranchPatterns": ["main"],
+  "branchPrefix": "dependency/",
+  "rangeStrategy": "bump",
+  "rebaseWhen": "behind-base-branch",
+  "dependencyDashboard": true,
+  "enabledManagers": ["npm"],
+  "addLabels": ["type: dependencies", "status: needs-review"],
+  "reviewers": ["catbee-technologies/catbee-admins"],
+  "assignees": [],
+  "lockFileMaintenance": { "enabled": true },
+  "semanticCommits": "enabled",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "deps",
+  "commitMessageLowerCase": "auto",
+  "ignoreDeps": [],
+  "packageRules": [
+    {
+      "groupName": "npm breaking updates",
+      "description": "Group npm major updates",
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["major"]
+    },
+    {
+      "groupName": "npm non-breaking updates",
+      "description": "Group npm minor and patch updates",
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["minor", "patch"]
+    },
+    {
+      "groupName": "angular packages",
+      "description": "Group Angular framework packages",
+      "matchPackageNames": ["@angular/**", "@angular-devkit/**", "ng-packagr"],
+      "matchUpdateTypes": ["minor", "patch"]
+    },
+    {
+      "groupName": "docusaurus packages",
+      "description": "Group Docusaurus packages",
+      "matchPackageNames": ["@docusaurus/**", "docusaurus-**", "@mdx-js/**"],
+      "matchUpdateTypes": ["minor", "patch"]
+    },
+    {
+      "groupName": "react packages",
+      "description": "Group React packages",
+      "matchPackageNames": ["react", "react-dom", "@types/react", "@types/react-dom", "prism-react-renderer"],
+      "matchUpdateTypes": ["minor", "patch"]
+    },
+    {
+      "groupName": "eslint packages",
+      "description": "Group ESLint packages",
+      "matchPackageNames": [
+        "eslint",
+        "eslint-**",
+        "@eslint/**",
+        "@typescript-eslint/**",
+        "@angular-eslint/**",
+        "angular-eslint",
+        "typescript-eslint",
+        "@docusaurus/eslint-plugin",
+        "@types/eslint**"
+      ],
+      "matchUpdateTypes": ["minor", "patch"]
+    },
+    {
+      "groupName": "testing packages",
+      "description": "Group Test packages",
+      "matchPackageNames": [
+        "jest",
+        "jest-**",
+        "@jest/**",
+        "@types/jest",
+        "ts-jest",
+        "jest-junit",
+        "jest-sonar-reporter",
+        "vitest",
+        "@vitest/**",
+        "testcontainers",
+        "@testcontainers/**",
+        "supertest",
+        "karma",
+        "karma-**",
+        "jasmine",
+        "jasmine-**",
+        "jasmine-core",
+        "karma-chrome-launcher",
+        "karma-coverage",
+        "karma-jasmine",
+        "karma-jasmine-html-reporter",
+        "@types/jasmine",
+        "@types/karma-**"
+      ],
+      "matchUpdateTypes": ["minor", "patch"]
+    },
+    {
+      "groupName": "catbee packages",
+      "description": "Group Catbee Node.js packages",
+      "matchPackageNames": ["@catbee/**"],
+      "matchUpdateTypes": ["minor", "patch"]
+    },
+    {
+      "groupName": "ng catbee packages",
+      "description": "Group Angular Catbee packages",
+      "matchPackageNames": ["@ng-catbee/**"],
+      "matchUpdateTypes": ["minor", "patch"]
+    }
+  ]
+}
